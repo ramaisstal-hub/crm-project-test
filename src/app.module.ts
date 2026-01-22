@@ -17,10 +17,10 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    AuthModule,
     UsersModule,
     TasksModule,
     CommentsModule,
-    AuthModule,
   ],
 })
 export class AppModule {}

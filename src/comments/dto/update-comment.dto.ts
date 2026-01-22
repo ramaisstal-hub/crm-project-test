@@ -1,8 +1,4 @@
-import { IsOptional, IsString, Length } from 'class-validator';
+import { PartialType } from '@nestjs/swagger';
+import { CreateCommentDto } from './create-comment.dto';
 
-export class UpdateCommentDto {
-  @IsOptional()
-  @IsString()
-  @Length(1, 1000)
-  text?: string;
-}
+export class UpdateCommentDto extends PartialType(CreateCommentDto) {}

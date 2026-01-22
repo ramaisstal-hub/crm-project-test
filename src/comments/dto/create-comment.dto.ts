@@ -1,10 +1,13 @@
-import { IsUUID, IsString, Length } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsUUID, Length } from 'class-validator';
 
 export class CreateCommentDto {
+  @ApiProperty()
   @IsUUID()
-  task_id: string;
+  taskId!: string;
 
+  @ApiProperty({ minLength: 1, maxLength: 1000 })
   @IsString()
   @Length(1, 1000)
-  text: string;
+  text!: string;
 }

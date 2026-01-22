@@ -5,6 +5,11 @@ npm i @nestjs/jwt passport passport-jwt
 npm i bcrypt
 npm i class-validator class-transformer
 npm i @nestjs/swagger swagger-ui-express
+npm install @nestjs/passport passport passport-jwt
+npm install @nestjs/config
+npm i bcrypt
+npm i -D @types/bcrypt @types/ms
+
 
 
 2) Поднять БД в постгрес
