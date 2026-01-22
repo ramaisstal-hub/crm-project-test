@@ -50,7 +50,6 @@ export class TasksService {
   async assertOwner(taskId: string, userId: string) {
     const task = await this.repo.findOne({ where: { id: taskId } });
     if (!task) throw new NotFoundException('Задача не найдена');
-    if (task.userId !== userId)
-      throw new ForbiddenException('Можно изменять/удалять только свои задачи');
+    if (task.userId !== userId) throw new ForbiddenException('Можно изменять/удалять только свои задачи');
   }
 }

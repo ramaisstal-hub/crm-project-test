@@ -20,20 +20,14 @@ export class AuthService {
   }
 
   private signRefresh(user: User) {
-    const secret = this.cfg.get<string>(
-      'JWT_REFRESH_SECRET',
-      'dev_refresh_secret',
-    );
+    const secret = this.cfg.get<string>('JWT_REFRESH_SECRET', 'dev_refresh_secret');
     const expiresIn = this.cfg.get<string>('JWT_REFRESH_EXPIRES_IN', '7d');
     return this.jwt.sign({ sub: user.id }, { secret, expiresIn });
   }
 
   async register(dto: RegisterDto) {
     const passwordHash = await bcrypt.hash(dto.password, 10);
-    const user = await this.usersService.create({
-      password: passwordHash,
-      role: dto.role,
-    });
+    const user = await this.usersService.create({ password: passwordHash, role: dto.role });
     return {
       userId: user.id,
       accessToken: this.signAccess(user),
@@ -54,13 +48,8 @@ export class AuthService {
 
   async refresh(refreshToken: string) {
     try {
-      const secret = this.cfg.get<string>(
-        'JWT_REFRESH_SECRET',
-        'dev_refresh_secret',
-      );
-      const payload = this.jwt.verify<{ sub: string }>(refreshToken, {
-        secret,
-      });
+      const secret = this.cfg.get<string>('JWT_REFRESH_SECRET', 'dev_refresh_secret');
+      const payload = this.jwt.verify<{ sub: string }>(refreshToken, { secret });
       const user = await this.usersService.findById(payload.sub);
       return {
         userId: user.id,
