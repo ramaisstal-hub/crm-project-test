@@ -18,4 +18,6 @@ docker compose up -d
 
 3) Проверить соедниение с БД
    jdbc:postgresql://localhost:5432/crm
-4) 
+4) API будет на http://localhost:3000
+5) Swagger — http://localhost:3000/docs
+6) npm run start:dev запуск

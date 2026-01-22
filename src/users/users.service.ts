@@ -8,7 +8,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private readonly repo: Repository<User>,
+    @InjectRepository(User)
+    private readonly repo: Repository<User>,
   ) {}
 
   async create(dto: CreateUserDto): Promise<User> {
